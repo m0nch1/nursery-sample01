@@ -1,0 +1,27 @@
+header
+  nav.nav
+    ul.nav__list
+        li.nav__item 
+          a(href="#home").js-smooth-scroll Home
+        li.nav__item
+          a(href="#news").js-smooth-scroll News
+        li.nav__item
+          a(href="#access").js-smooth-scroll Access
+        li.nav__item
+          a(href="#contact").js-smooth-scroll Contact
+
+  nav#nav-drawer.nav
+    input(type="checkbox")#nav-input.nav__unshown
+    label(for="nav-input")#nav-open
+      span
+    label(for="nav-input")#nav-close.nav__unshown
+    #nav-content
+      ul.nav__list--sp
+        li 
+          a(href="#home").js-smooth-scroll Home
+        li
+          a(href="#news").js-smooth-scroll News
+        li
+          a(href="#access").js-smooth-scroll Access
+        li
+          a(href="#contact").js-smooth-scroll Contact
