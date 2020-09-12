@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
 
 body {
   margin: 0;
 }
 
-$yu: '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック体', YuGothic, 'Hiragino Sans', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, sans-serif;
-$kosugi: 'Kosugi Maru', sans-serif;
+$yu: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic,
+  "Hiragino Sans", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ",
+  Meiryo, sans-serif;
+$kosugi: "Kosugi Maru", sans-serif;
 
 .header {
   padding: 10px 20px;
@@ -14,34 +16,38 @@ $kosugi: 'Kosugi Maru', sans-serif;
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: #FFF;
+  background-color: #fff;
+  z-index: 10;
   &__logo {
-    img{
+    img {
       width: 100%;
     }
   }
 }
 
 .nav {
-    width: 100%;
-    &__list {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      list-style: none;
+  width: 100%;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 0 20px;
+    font-family: $yu;
+
+    a {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
     }
-    &__item {
-      padding: 0 20px;
-      font-family: $yu;
-      a {
-        text-decoration: none;
-        color: rgb(0,0,0);
-        font-weight: bold;
-      }
-    }
+  }
 }
 
 .container {
@@ -51,12 +57,17 @@ $kosugi: 'Kosugi Maru', sans-serif;
 .hero {
   padding-right: 15%;
   position: relative;
+  height: calc(100vh - 150px);
+
   &__img {
     width: 100%;
-    box-sizing: border-box;
-    height: auto;
+    height: 100%;
+    background-image: url("../images/top/main.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 0 90px 0 0;
   }
+
   &__caption {
     position: absolute;
     top: 20%;
@@ -70,33 +81,84 @@ $kosugi: 'Kosugi Maru', sans-serif;
     font-family: $kosugi;
     opacity: 0;
     animation-name: fadein;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
 
-  @keyframes fadein {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-  }
-    
-  
   &__cap {
     &--one {
       @include cap;
     }
+
     &--two {
+      @include cap;
+      animation-delay: 0.5s;
+    }
+
+    &--three {
       @include cap;
       animation-delay: 1s;
     }
-    &--three {
-      @include cap;
-      animation-delay: 2s
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__scroll {
+    display: inline-block;
+    position: absolute;
+    right: 12%;
+    bottom: 0;
+    z-index: 2;
+    padding: 10px 10px 110px;
+    overflow: hidden;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: $yu;
+    line-height: 1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    writing-mode: vertical-lr;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      height: 100px;
+      background: #000;
+    }
+    &::after {
+      animation: sdl 1.5s cubic-bezier(1, 0, 0, 1) infinite;
+    }
+  }
+  @keyframes sdl {
+    0% {
+      transform: scale(1, 0);
+      transform-origin: 0 0;
+    }
+    50% {
+      transform: scale(1, 1);
+      transform-origin: 0 0;
+    }
+    50.1% {
+      transform: scale(1, 1);
+      transform-origin: 0 100%;
+    }
+    100% {
+      transform: scale(1, 0);
+      transform-origin: 0 100%;
     }
   }
 }
