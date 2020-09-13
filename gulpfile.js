@@ -100,7 +100,6 @@ task("reload", (done) => {
 task("watch", (done) => {
   watch([paths.cssSrc], series("sass", "reload"));
   watch([paths.jsSrc], series("js", "reload"));
-  // watch([paths.jsSrc], series("webpack", "reload"));
   watch([paths.pug], series("pug", "reload"));
   watch([paths.imageSrc], series("image", "reload"));
   done();
@@ -112,23 +111,9 @@ task("clean", function (done) {
   done();
 });
 
-// //Webpack
-// task("webpack", (done) => {
-//   return webpackStream(webpackConfig, webpack).pipe(gulp.dest("dist"));
-// });
-
 task("build", parallel("pug", "sass", "js", "image", "clean"));
 
 task(
   "default",
-  parallel(
-    "watch",
-    "browser-sync",
-    "pug",
-    "sass",
-    "js",
-    "image",
-    "clean"
-    // "webpack"
-  )
+  parallel("watch", "browser-sync", "pug", "sass", "js", "image", "clean")
 );
