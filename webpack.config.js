@@ -7,6 +7,6 @@ module.exports = {
   entry: "./js/main.js",
   // 出力ファイル
   output: {
-    filename: "js/bundle.js",
+    filename: "./js/main.js",
   },
 };

@@ -62,6 +62,7 @@ task("js", function () {
         presets: ["@babel/env"],
       })
     )
+    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(concat("main.js"))
     .pipe(uglify())
     .pipe(
@@ -99,7 +100,7 @@ task("reload", (done) => {
 task("watch", (done) => {
   watch([paths.cssSrc], series("sass", "reload"));
   watch([paths.jsSrc], series("js", "reload"));
-  watch([paths.jsSrc], series("webpack", "reload"));
+  // watch([paths.jsSrc], series("webpack", "reload"));
   watch([paths.pug], series("pug", "reload"));
   watch([paths.imageSrc], series("image", "reload"));
   done();
@@ -111,12 +112,12 @@ task("clean", function (done) {
   done();
 });
 
-//Webpack
-task("webpack", (done) => {
-  return webpackStream(webpackConfig, webpack).pipe(gulp.dest("dist"));
-});
+// //Webpack
+// task("webpack", (done) => {
+//   return webpackStream(webpackConfig, webpack).pipe(gulp.dest("dist"));
+// });
 
-task("build", parallel("pug", "sass", "js", "image", "clean", "webpack"));
+task("build", parallel("pug", "sass", "js", "image", "clean"));
 
 task(
   "default",
@@ -127,7 +128,7 @@ task(
     "sass",
     "js",
     "image",
-    "clean",
-    "webpack"
+    "clean"
+    // "webpack"
   )
 );

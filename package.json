@@ -19,7 +19,8 @@
     "gulp": "^4.0.2",
     "gulp-pug": "^4.0.1",
     "lazysizes": "^5.2.2",
-    "smoothscroll-polyfill": "^0.4.4"
+    "smoothscroll-polyfill": "^0.4.4",
+    "swiper": "^6.2.0"
   },
   "overrideBrowserslist": [
     "last 1 version",
