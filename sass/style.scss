@@ -7,13 +7,140 @@ $yu: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothi
 $kosugi: "Kosugi Maru", sans-serif;
 $Montserrat: "Montserrat", sans-serif;
 
+@mixin mobile {
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
 body {
   margin: 0;
   font-family: $yu;
 }
 
+.nav {
+  @include tablet {
+    display: none;
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: $yu;
+    padding: 0;
+    &--sp {
+      list-style: none;
+      padding: 0 16px;
+      a {
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        margin-bottom: 16px;
+        display: inline-block;
+      }
+    }
+  }
+  &__item {
+    a {
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  &__unshown {
+    display: none;
+  }
+}
+
+#nav-drawer {
+  position: fixed;
+  width: 100%;
+  padding: 1em;
+  z-index: 50;
+  display: none;
+  @include tablet {
+    display: block;
+  }
+}
+
+#nav-open {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+#nav-open span,
+#nav-open span:before,
+#nav-open span:after {
+  position: absolute;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background: #000;
+  display: block;
+  content: "";
+  cursor: pointer;
+}
+#nav-open span:before {
+  bottom: -8px;
+}
+#nav-open span:after {
+  bottom: -16px;
+}
+
+#nav-close {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+#nav-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 90%;
+  max-width: 330px;
+  height: 100%;
+  background: #fff;
+  transition: 0.3s ease-in-out;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+}
+
+#nav-input:checked ~ #nav-close {
+  display: block;
+  opacity: 0.5;
+}
+
+#nav-input:checked ~ #nav-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
+}
+
 .header {
-  padding: 10px 20px;
+  padding: 10px;
+  max-height: 90px;
   box-sizing: border-box;
   position: fixed;
   display: flex;
@@ -22,8 +149,18 @@ body {
   background-color: #fff;
   z-index: 10;
   &__logo {
+    @include tablet {
+      text-align: center;
+      width: 100%;
+    }
     img {
       width: 100%;
+      @include tablet {
+        width: 30%;
+      }
+      @include mobile {
+        width: 50%;
+      }
     }
   }
 }
@@ -42,19 +179,23 @@ body {
   }
 
   &__item {
-    padding: 0 20px;
+    padding: 0 15px;
     font-family: $yu;
 
     a {
       text-decoration: none;
       color: rgb(0, 0, 0);
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 18px;
     }
   }
 }
 
 .container {
   padding-top: 150px;
+  @include tablet {
+    padding-top: 100px;
+  }
 }
 
 .hero {
@@ -62,6 +203,14 @@ body {
   position: relative;
   height: calc(100vh - 150px);
   overflow: hidden;
+  @include tablet {
+    padding-right: 20%;
+    height: calc(100vh - 100px);
+  }
+  @include mobile {
+    padding-right: 25%;
+    height: calc(100vh - 100px);
+  }
 
   &__img {
     width: 100%;
@@ -134,6 +283,12 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     writing-mode: vertical-lr;
+    @include tablet {
+      right: 15%;
+    }
+    @include mobile {
+      right: 16%;
+    }
     &::after {
       content: "";
       position: absolute;
