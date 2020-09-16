@@ -400,6 +400,11 @@ body {
     letter-spacing: 2px;
     font-weight: 300;
     font-family: $Montserrat;
+    @include tablet {
+      top: 385px;
+      left: 15%;
+      right: inherit;
+    }
   }
   &__text {
     max-width: 300px;
@@ -407,6 +412,9 @@ body {
     font-size: 15px;
     text-align: justify;
     line-height: 1.95;
+    @include tablet {
+      max-width: inherit;
+    }
   }
   .swiper-container {
     width: 50%;
@@ -415,6 +423,13 @@ body {
     bottom: 100px;
     right: 50px;
     padding-left: 30px;
+    @include tablet {
+      position: relative;
+      bottom: inherit;
+      right: inherit;
+      left: -30px;
+      width: 100%;
+    }
   }
   .swiper-container-vertical > .swiper-pagination-bullets {
     right: inherit;
