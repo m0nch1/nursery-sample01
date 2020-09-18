@@ -443,3 +443,36 @@ body {
     background-size: cover;
   }
 }
+
+.to-top {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 30;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  padding: 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+  width: 30px;
+  height: 30px;
+  a {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    &::after {
+      box-sizing: border-box;
+      padding: 10px;
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: 5.5px;
+      content: "";
+      background-image: url("../images/icon/chevron-up.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
