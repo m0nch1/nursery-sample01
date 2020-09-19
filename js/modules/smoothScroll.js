@@ -16,15 +16,11 @@ export default function smoothScroll() {
 
   const scrollFunction = () => {
     const this_y = window.pageYOffset;
-    const navs = document.querySelectorAll(".nav");
+    const toTop = document.querySelector(".to-top");
     if (this_y > window.innerHeight - 56) {
-      navs.forEach((nav) => {
-        nav.classList.add("active");
-      });
+      toTop.classList.add("active");
     } else {
-      navs.forEach((nav) => {
-        nav.classList.remove("active");
-      });
+      toTop.classList.remove("active");
     }
   };
   window.onscroll = () => {
