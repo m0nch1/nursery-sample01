@@ -444,6 +444,33 @@ body {
   }
 }
 
+.concept {
+  text-align: center;
+  background: #eaf5fa;
+  position: relative;
+  padding: 50px;
+  &__title {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    color: #3576b3;
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  &__message {
+    line-height: 32px;
+    font-weight: bold;
+  }
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
 .to-top {
   position: fixed;
   right: 10px;
