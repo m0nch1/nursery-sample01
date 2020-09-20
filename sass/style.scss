@@ -449,6 +449,9 @@ body {
   background: #eaf5fa;
   position: relative;
   padding: 50px;
+  @include mobile {
+    padding: 25px;
+  }
   &__title {
     position: absolute;
     top: -50px;
@@ -459,15 +462,69 @@ body {
     color: #3576b3;
     font-size: 32px;
     letter-spacing: 2px;
+    @include mobile {
+      font-size: 24px;
+      width: 100%;
+      top: -40px;
+    }
   }
   &__message {
     line-height: 32px;
     font-weight: bold;
+    @include mobile {
+      font-size: 16px;
+    }
   }
   &__box {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+  }
+  &__card {
+    border-radius: 10px;
+    width: calc(100% / 4);
+    margin: 8px;
+    background: #fff;
+    box-sizing: border-box;
+    @include mobile {
+      width: 100%;
+    }
+  }
+  @mixin thumbnail {
+    min-height: 150px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  &__thumbnail {
+    &--one {
+      @include thumbnail;
+      background-image: url("../images/top/concept/one.jpg");
+    }
+    &--two {
+      @include thumbnail;
+      background-image: url("../images/top/concept/two.jpg");
+    }
+    &--three {
+      @include thumbnail;
+      background-image: url("../images/top/concept/three.jpg");
+    }
+    &--four {
+      @include thumbnail;
+      background-image: url("../images/top/concept/four.jpg");
+    }
+  }
+  &__card-title {
+    color: #3576b3;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin: 16px 0;
+  }
+  &__card-text {
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 16px 0;
   }
 }
 
@@ -477,7 +534,7 @@ body {
   bottom: 10px;
   z-index: 30;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   border: none;
   padding: 0;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
