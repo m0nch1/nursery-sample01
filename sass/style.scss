@@ -482,14 +482,17 @@ body {
     justify-content: space-around;
   }
   &__card {
-    border-radius: 10px;
     width: calc(100% / 4);
-    margin: 8px;
-    background: #fff;
     box-sizing: border-box;
+    padding: 8px;
     @include mobile {
       width: 100%;
     }
+  }
+  &__card-content {
+    padding: 8px;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
   }
   @mixin thumbnail {
     min-height: 150px;
