@@ -1,18 +1,26 @@
 const gulp = require("gulp");
 const pug = require("gulp-pug");
 const sass = require("gulp-sass");
-const babel = require("gulp-babel");
 const sourcemaps = require("gulp-sourcemaps");
 const concat = require("gulp-concat");
-const uglify = require("gulp-uglify-es").default;
 const rename = require("gulp-rename");
 const plumber = require("gulp-plumber");
 const del = require("del");
 const browserSync = require("browser-sync");
 
+// js babel
+const babel = require("gulp-babel");
+const uglify = require("gulp-uglify-es").default;
+
+// image compressor
+const imagemin = require("gulp-imagemin");
+const imageminMozjpeg = require("imagemin-mozjpeg");
+const imageminPngquant = require("imagemin-pngquant");
+const imageminSvgo = require("imagemin-svgo");
+
+// webpack
 const webpackStream = require("webpack-stream");
 const webpack = require("webpack");
-
 const webpackConfig = require("./webpack.config");
 
 const paths = {
@@ -102,6 +110,26 @@ const jsBabel = () => {
 const image = () => {
   return src(PATHS.image.src)
     .pipe(plumber({ errorHandler: errorHandler }))
+    .pipe(
+      imagemin(
+        [
+          imageminMozjpeg({
+            quality: 80,
+          }),
+          imageminPngquant(),
+          imageminSvgo({
+            plugins: [
+              {
+                removeViewbox: false,
+              },
+            ],
+          }),
+        ],
+        {
+          verbose: true,
+        }
+      )
+    )
     .pipe(gulp.dest(PATHS.image.dest));
 };
 
