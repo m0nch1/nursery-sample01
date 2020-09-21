@@ -69,6 +69,7 @@ const pug2Html = () => {
 
 const scss2Css = () => {
   return src(PATHS.scss.src)
+    .pipe(plumber({ errorHandler: errorHandler }))
     .pipe(
       sass({
         outputStyle: "expanded", // Minifyするなら'compressed'
@@ -79,6 +80,7 @@ const scss2Css = () => {
 
 const jsBabel = () => {
   return src(PATHS.js.src)
+    .pipe(plumber({ errorHandler: errorHandler }))
     .pipe(sourcemaps.init())
     .pipe(
       babel({
@@ -98,7 +100,9 @@ const jsBabel = () => {
 };
 
 const image = () => {
-  return src(PATHS.image.src).pipe(gulp.dest(PATHS.image.dest));
+  return src(PATHS.image.src)
+    .pipe(plumber({ errorHandler: errorHandler }))
+    .pipe(gulp.dest(PATHS.image.dest));
 };
 
 const browserSyncFunc = () => {
@@ -111,9 +115,10 @@ const browserSyncFunc = () => {
   });
 };
 
-const reload = (done) => {
+const browserReload = (done) => {
   browserSync.reload();
   done();
+  console.info("Browser reload completed");
 };
 
 const clean = (done) => {
@@ -122,99 +127,11 @@ const clean = (done) => {
 };
 
 const watchFiles = () => {
-  watch(paths.pug, series(pug2Html, reload));
-  watch(paths.scssSrc, series(scss2Css, reload));
-  watch(paths.jsSrc, series(jsBabel, reload));
-  watch(paths.imageSrc, series(image, reload));
+  watch(paths.pug, series(pug2Html, browserReload));
+  watch(paths.scssSrc, series(scss2Css, browserReload));
+  watch(paths.jsSrc, series(jsBabel, browserReload));
+  watch(paths.imageSrc, series(image, browserReload));
 };
-
-//Pug
-// task("pug", function () {
-//   return src([paths.pug, "!./src/pug/**/_*.pug"])
-//     .pipe(
-//       pug({
-//         pretty: true,
-//         basedir: "./pug",
-//       })
-//     )
-//     .pipe(dest(paths.root));
-// });
-
-// //Sass
-// task("sass", function () {
-//   return src(paths.scssSrc)
-//     .pipe(
-//       sass({
-//         outputStyle: "expanded", // Minifyするなら'compressed'
-//       })
-//     )
-//     .pipe(dest(paths.cssDist));
-// });
-
-// //JavaScript(babel transpile and minify)
-// task("js", function () {
-//   return src(paths.jsSrc)
-//     .pipe(sourcemaps.init())
-//     .pipe(
-//       babel({
-//         presets: ["@babel/preset-env"],
-//       })
-//     )
-//     .pipe(webpackStream(webpackConfig, webpack))
-//     .pipe(concat("main.js"))
-//     .pipe(uglify())
-//     .pipe(
-//       rename({
-//         extname: ".min.js",
-//       })
-//     )
-//     .pipe(sourcemaps.write("../maps"))
-//     .pipe(dest(paths.jsDist));
-// });
-
-// //Image File
-// task("image", function () {
-//   return src(paths.imageSrc).pipe(gulp.dest(paths.imageDist));
-// });
-
-// // browser-sync
-// task("browser-sync", () => {
-//   return browserSync.init({
-//     server: {
-//       baseDir: paths.root,
-//     },
-//     port: 3000,
-//     reloadOnRestart: true,
-//   });
-// });
-
-// // browser-sync reload
-// task("reload", (done) => {
-//   browserSync.reload();
-//   done();
-// });
-
-// //watch
-// task("watch", (done) => {
-//   watch([paths.scssSrc], series("sass", "reload"));
-//   watch([paths.jsSrc], series("js", "reload"));
-//   watch([paths.pug], series("pug", "reload"));
-//   watch([paths.imageSrc], series("image", "reload"));
-//   done();
-// });
-
-// //Clean
-// task("clean", function (done) {
-//   del.sync("./dist/**", "！./dist");
-//   done();
-// });
-
-// task("build", parallel("pug", "sass", "js", "image", "clean"));
-
-// task(
-//   "default",
-//   parallel("watch", "browser-sync", "pug", "sass", "js", "image", "clean")
-// );
 
 exports.build = series(parallel(pug2Html, scss2Css, jsBabel, image));
 
