@@ -133,9 +133,9 @@ const watchFiles = () => {
   watch(paths.imageSrc, series(image, browserReload));
 };
 
-exports.build = series(parallel(pug2Html, scss2Css, jsBabel, image));
+exports.build = series(parallel(clean, pug2Html, scss2Css, jsBabel, image));
 
 exports.default = series(
-  series(pug2Html, scss2Css, jsBabel, image),
+  series(clean, pug2Html, scss2Css, jsBabel, image),
   parallel(watchFiles, browserSyncFunc)
 );
