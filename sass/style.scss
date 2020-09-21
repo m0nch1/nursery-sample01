@@ -2,9 +2,9 @@
 
 @import "./mixin/mediaQuery";
 
-@import "./module/header";
-@import "./module/nav";
-@import "./module/tpTop";
+@import "./components/header";
+@import "./components/nav";
+@import "./components/tpTop";
 
 body {
   margin: 0;
