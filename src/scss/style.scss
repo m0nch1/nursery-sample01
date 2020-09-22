@@ -298,13 +298,14 @@ body {
   &__box {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
   }
   &__card {
     width: calc(100% / 4);
+    min-height: 600px;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 24px;
     @include mobile {
       width: 100%;
     }
@@ -340,13 +341,15 @@ body {
   }
   &__card-title {
     color: #3576b3;
-    font-size: 24px;
+    font-size: 16px;
     letter-spacing: 2px;
     margin: 16px 0;
   }
   &__card-text {
-    font-weight: bold;
+    font-weight: normal;
     letter-spacing: 2px;
-    margin: 16px 0;
+    padding: 16px;
+    font-size: 14px;
+    min-height: 250px;
   }
 }
