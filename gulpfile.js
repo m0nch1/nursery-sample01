@@ -26,7 +26,7 @@ const webpackConfig = require("./webpack.config");
 const paths = {
   root: "./dist/",
   pug: "./src/pug/**/*.pug",
-  scssSrc: "./src/sass/**/*.scss",
+  scssSrc: "./src/scss/**/*.scss",
   cssDist: "./dist/css/",
   jsSrc: "./src/js/**/*.js",
   jsDist: "./dist/js/",
