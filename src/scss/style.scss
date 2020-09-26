@@ -264,6 +264,39 @@ body {
   }
 }
 
+@mixin circle {
+  color: #fff;
+  padding: 5%;
+  width: 20px;
+  height: 20px;
+  margin: 0 -15px;
+  mix-blend-mode: multiply;
+  @include mobile {
+    margin: 0 -5px;
+  }
+}
+
+.circle-line {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  &__one {
+    @include circle;
+    background: #f66;
+    border-radius: 50% 50% 50% 70%/50% 50% 70% 60%;
+  }
+  &__two {
+    @include circle;
+    background: #f92;
+    border-radius: 80% 30% 50% 50%/50%;
+  }
+  &__three {
+    @include circle;
+    background: #fc2;
+    border-radius: 40% 40% 50% 40%/30% 50% 50% 50%;
+  }
+}
+
 .concept {
   text-align: center;
   background: #eaf5fa;
@@ -272,6 +305,7 @@ body {
   @include mobile {
     padding: 25px;
   }
+
   &__title {
     position: absolute;
     top: -50px;
