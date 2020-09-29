@@ -5,7 +5,14 @@ head
   meta(content=page.description, name="description")
   meta(name="viewport" content="width=device-width, initial-scale=1.0")
   title #{page.title}
-  link(rel="stylesheet" href=css_path+"/style.css")
+
+  if page.url === 'index.html'
+    link(rel="stylesheet" href=css_path+"/style.css")
+  else
+    link(rel="stylesheet" href="/css/pages/style.css")
+
   link(rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css")
   link(rel="icon" type="image/svg+xml", href=image_path+"/favicon.svg")
+
+
   script(defer src=js_path+"/main.min.js")

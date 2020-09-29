@@ -1,6 +1,7 @@
 const gulp = require("gulp");
 const pug = require("gulp-pug");
 const sass = require("gulp-sass");
+const notify = require("gulp-notify");
 const sourcemaps = require("gulp-sourcemaps");
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
@@ -56,7 +57,7 @@ const PATHS = {
 const { watch, series, src, dest, parallel } = require("gulp");
 
 const errorHandler = (err, stats) => {
-  if (ell || (stats && stats.compilation.error.length > 0)) {
+  if (err || (stats && stats.compilation.error.length > 0)) {
     const error = err || stats.compilation.errors[0].error;
     notify.onError({ message: "<%= error.message %>" })(error);
     this.emit("end");

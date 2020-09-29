@@ -1,0 +1,60 @@
+@import "../settings/config";
+
+@import "../mixin/mediaQuery";
+
+@import "../components/header";
+@import "../components/nav";
+@import "../components/tpTop";
+@import "../components/footer";
+
+.container {
+  padding: 150px 8vw 0px;
+  @include mobile {
+    padding: 80px 8vw 0px;
+  }
+}
+
+.title {
+  &__ja {
+    font-family: $yu;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  &__en {
+    font-family: $Pacifico;
+    font-size: 32px;
+  }
+}
+
+.hero {
+  @mixin image {
+    height: 200px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__image {
+    &--guide {
+      @include image;
+      background-image: url(../../images/pages/guide/top.jpg);
+    }
+    &--care {
+      @include image;
+      background-image: url(../../images/pages/care/top.jpg);
+    }
+    &--nutrition {
+      @include image;
+      background-image: url(../../images/pages/nutrition/top.jpg);
+    }
+    &--news {
+      @include image;
+      background-image: url(../../images/pages/news/top.jpg);
+    }
+    &--access {
+      @include image;
+      background-image: url(../../images/pages/access/top.jpg);
+    }
+  }
+}
