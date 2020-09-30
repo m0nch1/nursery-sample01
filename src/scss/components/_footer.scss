@@ -1,7 +1,25 @@
 .footer {
-  padding: 16px 80px;
+  margin: 24px 8vw 0;
+  padding-top: 24px;
   display: flex;
   flex-wrap: wrap;
+  background-image: repeating-linear-gradient(
+      45deg,
+      #ccc 0,
+      #ccc 1px,
+      transparent 0,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      #ccc 0,
+      #ccc 1px,
+      transparent 0,
+      transparent 50%
+    );
+  background-size: 7px 7px;
+  background-position: top center;
+  background-repeat: repeat-x;
   @include mobile {
     padding: 16px 20px;
   }
